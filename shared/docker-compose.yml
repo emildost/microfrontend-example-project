@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  # Ana uygulama (Shell)
+  shell:
+    build: 
+      context: ./apps/shell
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_HEADER_URL=http://localhost:3001/remoteEntry.js
+      - REACT_APP_PRODUCT_LIST_URL=http://localhost:3002/remoteEntry.js
+      - REACT_APP_USER_PROFILE_URL=http://localhost:3003/remoteEntry.js
+      - REACT_APP_CART_URL=http://localhost:3004/remoteEntry.js
+    depends_on:
+      - header
+      - product-list
+      - user-profile
+      - cart
+    networks:
+      - microfrontend-network
+
+  # Header Microfrontend
+  header:
+    build:
+      context: ./apps/header
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    networks:
+      - microfrontend-network
+
+  # Product List Microfrontend
+  product-list:
+    build:
+      context: ./apps/product-list
+      dockerfile: Dockerfile
+    ports:
+      - "3002:80"
+    environment:
+      - REACT_APP_API_URL=http://backend:8000
+    depends_on:
+      - backend
+    networks:
+      - microfrontend-network
+
+  # User Profile Microfrontend
+  user-profile:
+    build:
+      context: ./apps/user-profile
+      dockerfile: Dockerfile
+    ports:
+      - "3003:80"
+    environment:
+      - REACT_APP_API_URL=http://backend:8000
+    depends_on:
+      - backend
+    networks:
+      - microfrontend-network
+
+  # Cart Microfrontend
+  cart:
+    build:
+      context: ./apps/cart
+      dockerfile: Dockerfile
+    ports:
+      - "3004:80"
+    networks:
+      - microfrontend-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - DEBUG=True
+    command: >
+      sh -c "python manage.py migrate &&
+             python create_sample_data.py &&
+             python manage.py runserver 0.0.0.0:8000"
+    networks:
+      - microfrontend-network
+
+networks:
+  microfrontend-network:
+    driver: bridge
