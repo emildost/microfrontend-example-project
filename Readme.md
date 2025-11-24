@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Microfrontend Architecture](/microfrontend-project/shared/assets/readme-banner.png)
+![Microfrontend Architecture](shared/assets/readme-banner.png)
 
 **A Modern Microfrontend Architecture Implementation with Django Backend**
 
@@ -140,7 +140,7 @@ Before you begin, ensure you have the following installed:
 
 ### Verification Commands
 
-```bash
+```sh
 # Check Node.js version
 node --version
 
@@ -155,11 +155,19 @@ docker --version
 docker-compose --version
 ```
 
+```text
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 8: node: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 11: npm: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 14: python: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 17: docker: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 18: docker-compose: command not found
+```
+
 ## 🛠️ Installation & Setup
 
 ### Step 1: Clone and Setup Project Structure
 
-```bash
+```sh
 git clone https://github.com/qiyascc/microfrontend-example/
 cd microfrontend-example
 
@@ -169,14 +177,20 @@ cd Shared/
 npm init -y
 ```
 
-
+```text
+Cloning into 'microfrontend-example'...
+fatal: could not read Username for 'https://github.com': Device not configured
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 8: cd: microfrontend-example: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 12: cd: Shared/: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 13: npm: command not found
+```
 
 ### Step 2: Backend Setup (Django)
 
 <details>
 <summary>Click for detailed backend setup</summary>
 
-```bash
+```sh
 cd backend
 
 # Create virtual environment
@@ -194,6 +208,13 @@ pip install -r requierements.txt
 
 ```
 
+```text
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 7: cd: backend: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 10: python: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 14: venvScriptsactivate: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 16: venv/bin/activate: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 19: pip: command not found
+```
 
 **Complete backend setup continues...**
 </details>
@@ -234,7 +255,8 @@ pip install -r requierements.txt
 ### Running in Development Mode
 
 #### Option 1: Run All Services with Docker (Recommended)
-```bash
+
+```sh
 # Build and start all services
 docker-compose up --build
 
@@ -248,18 +270,34 @@ docker-compose logs -f
 docker-compose down
 ```
 
+```text
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 8: docker-compose: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 11: docker-compose: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 14: docker-compose: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 17: docker-compose: command not found
+```
+
 #### Option 2: Run Services Individually
 
 **Backend:**
-```bash
+
+```sh
 cd backend
 python manage.py migrate
 python create_sample_data.py
 python manage.py runserver
 ```
 
+```text
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 7: cd: backend: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 8: python: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 9: python: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 10: python: command not found
+```
+
 **Frontends (run in separate terminals):**
-```bash
+
+```sh
 # Shell app
 cd apps/shell && npm run dev
 
@@ -274,6 +312,14 @@ cd apps/user-profile && npm run dev
 
 # Cart microfrontend
 cd apps/cart && npm run dev
+```
+
+```text
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 8: cd: apps/shell: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 11: cd: apps/header: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 14: cd: apps/product-list: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 17: cd: apps/user-profile: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 20: cd: apps/cart: No such file or directory
 ```
 
 ### Access Points
@@ -293,6 +339,7 @@ cd apps/cart && npm run dev
 ### Docker Compose Configuration
 
 **docker-compose.yml**
+
 ```yaml
 version: '3.8'
 
@@ -348,7 +395,7 @@ networks:
 
 ### Docker Commands
 
-```bash
+```sh
 # Build images
 docker-compose build
 
@@ -365,13 +412,21 @@ docker-compose build shell
 docker-compose logs shell
 ```
 
+```text
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 8: docker-compose: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 11: docker-compose: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 14: docker-compose: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 17: docker-compose: command not found
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 20: docker-compose: command not found
+```
+
 ## 🚀 Production Deployment
 
 ### Individual Service Deployment
 
 Each microfrontend can be deployed to separate servers:
 
-```bash
+```sh
 # Build each microfrontend
 cd apps/shell && npm run build
 cd apps/header && npm run build
@@ -387,10 +442,24 @@ scp -r apps/user-profile/dist/* user@profile-server:/var/www/html/
 scp -r apps/cart/dist/* user@cart-server:/var/www/html/
 ```
 
+```text
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 8: cd: apps/shell: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 9: cd: apps/header: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 10: cd: apps/product-list: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 11: cd: apps/user-profile: No such file or directory
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 12: cd: apps/cart: No such file or directory
+scp: stat local "apps/shell/dist/*": No such file or directory
+scp: stat local "apps/header/dist/*": No such file or directory
+scp: stat local "apps/product-list/dist/*": No such file or directory
+scp: stat local "apps/user-profile/dist/*": No such file or directory
+scp: stat local "apps/cart/dist/*": No such file or directory
+```
+
 ### Environment Variables for Production
 
 **Shell Environment:**
-```bash
+
+```sh
 REACT_APP_HEADER_URL=https://header.yourdomain.com/remoteEntry.js
 REACT_APP_PRODUCT_LIST_URL=https://products.yourdomain.com/remoteEntry.js
 REACT_APP_USER_PROFILE_URL=https://profile.yourdomain.com/remoteEntry.js
@@ -398,7 +467,8 @@ REACT_APP_CART_URL=https://cart.yourdomain.com/remoteEntry.js
 ```
 
 **Microfrontend Environment:**
-```bash
+
+```sh
 REACT_APP_API_URL=https://api.yourdomain.com
 ```
 
@@ -434,12 +504,13 @@ REACT_APP_API_URL=https://api.yourdomain.com
 3. Check browser console for script loading errors
 4. Ensure components are exported to window object
 
-```javascript
+```js
 // In each microfrontend's main component
 if (typeof window !== 'undefined') {
   window.ComponentName = ComponentName;
 }
 ```
+
 </details>
 
 <details>
@@ -459,6 +530,14 @@ CORS_ALLOWED_ORIGINS = [
     # ... all other ports
 ]
 ```
+
+```text
+  File "/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/mdlab.py", line 12
+    print(], flush=True)
+          ^
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+```
+
 </details>
 
 <details>
@@ -475,19 +554,37 @@ CORS_ALLOWED_ORIGINS = [
 ### Debugging Tips
 
 1. **Check Service Status:**
-   ```bash
+
+```sh
    docker-compose ps
-   ```
+```
+
+```text
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 7: docker-compose: command not found
+```
 
 2. **View Logs:**
-   ```bash
+
+```sh
    docker-compose logs -f shell
-   ```
+```
+
+```text
+/var/folders/g7/d4w9m3xd30l40fsndk7s4vnh0000gn/T/mdlab/main: line 7: docker-compose: command not found
+```
 
 3. **Test API Endpoints:**
-   ```bash
+
+```sh
    curl http://localhost:8000/api/products/
-   ```
+```
+
+```text
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (7) Failed to connect to localhost port 8000 after 0 ms: Couldn't connect to server
+```
 
 4. **Browser Developer Tools:**
    - Check Network tab for failed requests
